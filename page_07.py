@@ -10,22 +10,13 @@
 
 import streamlit as st
 import pandas as pd
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#import plotly.graph_objects as go
 import torch 
 import time
-#import ayncio 
 import requests
 import datetime
 from PIL import Image
 from torchvision import transforms
-#from torchvision import io
 import os
-#import tkinter as tk
-#from tkinter import filedialog
-#import sys
-#import json
 from io import BytesIO
 
 def get_prediction(image, model):
