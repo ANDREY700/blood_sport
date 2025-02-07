@@ -8,7 +8,7 @@ import streamlit as st
 import pandas as pd
 #import matplotlib.pyplot as plt
 #import seaborn as sns
-import yfinance as yf
+#import yfinance as yf
 import functools
 
 
