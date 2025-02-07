@@ -20,22 +20,13 @@ import requests
 import datetime
 from PIL import Image
 from torchvision import transforms
-from torchvision import io
+#from torchvision import io
 import os
-import tkinter as tk
-from tkinter import filedialog
-import sys
-import json
+#import tkinter as tk
+#from tkinter import filedialog
+#import sys
+#import json
 from io import BytesIO
-
-def select_folder():
-    root = tk.Tk()
-    root.withdraw()  # Hide the main window
-    folder_path = filedialog.askdirectory()  # Open the dialog to select a folder
-    if folder_path:
-        print(json.dumps({"folder_path": folder_path}))
-    root.destroy()
-
 
 def get_prediction(image, model):
     transform = transforms.Compose([
@@ -47,7 +38,6 @@ def get_prediction(image, model):
         pred_class = torch.argmax(model(input_tensor.unsqueeze(0).to('cpu'))).item()
     return pred_class
 
-
 def load_image_from_url(url):
     response = requests.get(url, stream=True)
     response.raise_for_status()  # Проверяем, что запрос успешен
@@ -55,24 +45,18 @@ def load_image_from_url(url):
     return image
 
 
-def file_selector(folder_path):
-    filenames = os.listdir(folder_path)
-    selected_filename = st.selectbox('Select a file', filenames)
-    return os.path.join(folder_path, selected_filename)
-
-
-   
-
 try:
     #st.write('Загрука файла модели спортивной фотографии')
     #with st.spinner("Загрузка... ", show_time=True):
     #    await asyncio.sleep(0.5)
     #    time.sleed(5)
+    
     model_sport = torch.load('model_sport.pth', weights_only=False, map_location='cpu')
 except:
     st.write('Ошибка загрузки файла модели спортивной фотографии')
 else:
     try:
+        
         model_blood = torch.load('model_eff3_blood.pth', weights_only=False, map_location='cpu')
     except:
         st.write('Ошибка загрузки файла модели клеток крови')
